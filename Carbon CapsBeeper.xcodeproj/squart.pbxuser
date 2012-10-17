@@ -527,7 +527,7 @@
 	77A205490AB9E68E00F4C849 /* Events.h */ = {
 		isa = PBXFileReference;
 		name = Events.h;
-		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h;
+		path = /Applications/Xcode.app//Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h;
 		sourceTree = "<absolute>";
 	};
 	77A2054A0AB9E68E00F4C849 /* PBXTextBookmark */ = {
@@ -593,7 +593,7 @@
 	77A205500AB9E68E00F4C849 /* NSBundle.h */ = {
 		isa = PBXFileReference;
 		name = NSBundle.h;
-		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSBundle.h;
+		path = /Applications/Xcode.app//Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSBundle.h;
 		sourceTree = "<absolute>";
 	};
 	77A205510AB9E68E00F4C849 /* PBXTextBookmark */ = {
@@ -619,7 +619,7 @@
 	77A205530AB9E68E00F4C849 /* NSBundle.h */ = {
 		isa = PBXFileReference;
 		name = NSBundle.h;
-		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSBundle.h;
+		path = /Applications/Xcode.app//Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSBundle.h;
 		sourceTree = "<absolute>";
 	};
 	77A205540AB9E68E00F4C849 /* PBXTextBookmark */ = {
