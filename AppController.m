@@ -11,7 +11,7 @@
 	NSStatusBar *bar = [NSStatusBar systemStatusBar];
 	menuItem = [bar statusItemWithLength:NSVariableStatusItemLength];
 	[menuItem retain]; // keep it!
-	[menuItem setTitle:NSLocalizedString(@"CCB",@"")]; // title
+	[menuItem setTitle:NSLocalizedString(@"📢",@"")]; // title
 	[menuItem setHighlightMode:YES]; // behave like main menu
 	[menuItem setMenu:menuItemMenu];	
 	
