@@ -268,7 +268,7 @@
 					ppc,
 					i386,
 				);
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk;
 			};
 			name = Development;
 		};
@@ -279,7 +279,7 @@
 					ppc,
 					i386,
 				);
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk;
 			};
 			name = Deployment;
 		};
@@ -290,7 +290,7 @@
 					ppc,
 					i386,
 				);
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk;
 			};
 			name = Default;
 		};
