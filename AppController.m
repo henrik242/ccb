@@ -98,7 +98,7 @@
 }
 
 - (IBAction)openWebsite:(id)sender {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.squart.de"]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/henrik242/ccb"]];
 }
 
 @end
