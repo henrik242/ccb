@@ -1,6 +1,8 @@
 About
 =====
-Version 1.1 of Carbon CapsBeeper by Alexander Jandt &lt;info@squart.de&gt; was fetched from http://www.squart.de/software/ccb/ at 2007-07-22
+Version 1.1 of Carbon CapsBeeper by Alexander Jandt &lt;info@squart.de&gt; was fetched from 
+[http://www.squart.de/software/ccb/](https://web.archive.org/web/20070722153745/http://www.squart.de/software/ccb/)
+at 2007-07-22
     
 Licence
 =======
