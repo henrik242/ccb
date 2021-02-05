@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: [ macos-latest ]
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -20,6 +20,9 @@ jobs:
 
       - name: Start xcodebuild test
         run: xcodebuild -project Carbon\ CapsBeeper.xcodeproj
+
+      - name: Fix permissions
+        run: chmod 755 build/Default/*.app/Contents/MacOS/*
 
       - name: Upload .app
         uses: actions/upload-artifact@v2
