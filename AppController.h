@@ -6,17 +6,17 @@
 
 @interface AppController : NSObject
 {
-	NSSound *sound;
-	NSTimer *timer;
-	
-	NSStatusItem *menuItem;
-	IBOutlet NSMenu *menuItemMenu;
-	
-	IBOutlet NSMenuItem *enabledMenuItem;
-	IBOutlet NSMenuItem *quitMenuItem;
-	
-	BOOL isAlarming;
-	BOOL alarmIsEnabled;
+    NSSound *sound;
+    NSTimer *timer;
+    
+    NSStatusItem *menuItem;
+    IBOutlet NSMenu *menuItemMenu;
+    
+    IBOutlet NSMenuItem *enabledMenuItem;
+    IBOutlet NSMenuItem *quitMenuItem;
+    
+    BOOL isAlarming;
+    BOOL alarmIsEnabled;
 }
 - (void)checkCapsLock:(NSTimer *)aTimer;
 - (IBAction)menuChanged:(id)sender;
