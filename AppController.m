@@ -11,8 +11,8 @@
 	NSStatusBar *bar = [NSStatusBar systemStatusBar];
 	menuItem = [bar statusItemWithLength:NSVariableStatusItemLength];
 	[menuItem retain]; // keep it!
-	[menuItem setTitle:NSLocalizedString(@"📢",@"")]; // title
-	[menuItem setHighlightMode:YES]; // behave like main menu
+	menuItem.button.title = NSLocalizedString(@"📢",@""); // title
+	menuItem.button.cell.highlighted = YES; // behave like main menu
 	[menuItem setMenu:menuItemMenu];	
 	
 	isAlarming = NO;
