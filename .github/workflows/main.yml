@@ -18,7 +18,7 @@ jobs:
       - name: Select xcode
         run: sudo xcode-select -switch /Applications/Xcode_11.3.app
 
-      - name: Start xcodebuild test
+      - name: Engage!
         run: xcodebuild -project Carbon\ CapsBeeper.xcodeproj
 
       - name: Use tar to keep executable permissions
