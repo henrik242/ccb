@@ -21,11 +21,11 @@ jobs:
       - name: Start xcodebuild test
         run: xcodebuild -project Carbon\ CapsBeeper.xcodeproj
 
-      - name: Fix permissions
-        run: chmod 755 build/Default/*.app/Contents/MacOS/*
+      - name: Use tar to keep executable permissions
+        run: cd build/Default && tar czvf CCB.app.tgz *.app
 
       - name: Upload .app
         uses: actions/upload-artifact@v2
         with:
-          name: CCB.app
-          path: build/Default/*.app
+          name: CCB.app.tgz
+          path: build/Default/CCB.app.tgz
