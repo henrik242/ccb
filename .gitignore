@@ -1,4 +1,3 @@
-# Xcode
 build/*
 *.pbxuser
 !default.pbxuser
@@ -15,3 +14,4 @@ profile
 *.moved-aside
 *.iml
 .idea
+.DS_Store
