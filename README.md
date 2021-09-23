@@ -15,4 +15,4 @@ Building
 
 Releases
 ========
-Fetch the latest build from https://nightly.link/henrik242/ccb/workflows/main/main/CCB.app.tgz.zip
+Fetch the latest build from https://nightly.link/henrik242/ccb/workflows/build/main/CCB.app.tgz.zip
