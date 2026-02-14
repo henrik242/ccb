@@ -15,6 +15,9 @@ Building
 
     $ xcodebuild -project Cocoa\ CapsBeeper.xcodeproj
 
-Releases
-========
-Download the latest release from https://github.com/henrik242/ccb/releases/latest
+Install
+=======
+
+    $ brew install henrik242/brew/ccb
+
+Or download the latest release from https://github.com/henrik242/ccb/releases/latest
