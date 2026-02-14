@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build
-        run: xcodebuild -project Carbon\ CapsBeeper.xcodeproj
+        run: xcodebuild -project Cocoa\ CapsBeeper.xcodeproj
 
       - name: Use tar to keep executable permissions
         run: cd build/Default && tar czvf CCB.app.tgz *.app

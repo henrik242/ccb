@@ -30,7 +30,7 @@
         self.enabledMenuItem.title = NSLocalizedString(@"Activate Warning", @"");
         self.enabledMenuItem.tag = 0;
     }
-    self.quitMenuItem.title = [NSLocalizedString(@"Quit", @"") stringByAppendingString:@" Carbon CapsBeeper"];
+    self.quitMenuItem.title = [NSLocalizedString(@"Quit", @"") stringByAppendingString:@" Cocoa CapsBeeper"];
 
     _loginMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Start on Login", @"")
                                                 action:@selector(toggleStartOnLogin:)

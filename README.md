@@ -1,17 +1,19 @@
 About
 =====
-Version 1.1 of Carbon CapsBeeper by Alexander Jandt &lt;info@squart.de&gt; was fetched from 
+Cocoa CapsBeeper is a macOS menu bar app that sounds an alarm when Caps Lock is on.
+
+Originally version 1.1 of Carbon CapsBeeper by Alexander Jandt &lt;info@squart.de&gt;, fetched from
 [http://www.squart.de/software/ccb/](https://web.archive.org/web/20070722153745/http://www.squart.de/software/ccb/)
-at 2007-07-22
-    
+at 2007-07-22. Since modernized to use Cocoa and current macOS APIs.
+
 Licence
 =======
-Carbon CapsBeeper is Public Domain. If you are new to Cocoa you can see how to use Carbon from within a Cocoa App.
+Cocoa CapsBeeper is Public Domain.
 
 Building
 ========
 
-    $ xcodebuild -project Carbon\ CapsBeeper.xcodeproj
+    $ xcodebuild -project Cocoa\ CapsBeeper.xcodeproj
 
 Releases
 ========

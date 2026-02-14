@@ -1,4 +1,4 @@
 /* Localized versions of Info.plist keys */
 
-CFBundleName = "Carbon CapsBeeper";
+CFBundleName = "Cocoa CapsBeeper";
 NSHumanReadableCopyright = "© by squart.de, 2006";
