@@ -15,4 +15,4 @@ Building
 
 Releases
 ========
-Fetch the latest build from https://nightly.link/henrik242/ccb/workflows/build/main/CCB.app.tgz.zip
+Download the latest release from https://github.com/henrik242/ccb/releases/latest
