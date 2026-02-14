@@ -18,7 +18,12 @@ Building
 Install
 =======
 
-    $ brew install --cask henrik242/brew/ccb
+    $ brew install --cask --no-quarantine henrik242/brew/ccb
+
+The app is not notarized, so macOS Gatekeeper will warn that it can't check for malware.
+The `--no-quarantine` flag prevents this. If you already installed without it, run:
+
+    $ xattr -d com.apple.quarantine "/Applications/Cocoa CapsBeeper.app"
 
 See the [Homebrew tap](https://github.com/henrik242/homebrew-brew) for more info.
 
