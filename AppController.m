@@ -1,4 +1,5 @@
 #import "AppController.h"
+#import <ServiceManagement/ServiceManagement.h>
 
 @implementation AppController {
     NSSound *_sound;
@@ -6,6 +7,7 @@
     NSStatusItem *_statusItem;
     BOOL _isAlarming;
     BOOL _alarmEnabled;
+    NSMenuItem *_loginMenuItem;
 }
 
 + (void)initialize {
@@ -29,6 +31,18 @@
         self.enabledMenuItem.tag = 0;
     }
     self.quitMenuItem.title = [NSLocalizedString(@"Quit", @"") stringByAppendingString:@" Carbon CapsBeeper"];
+
+    _loginMenuItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Start on Login", @"")
+                                                action:@selector(toggleStartOnLogin:)
+                                         keyEquivalent:@""];
+    _loginMenuItem.target = self;
+    NSInteger quitIndex = [self.menuItemMenu indexOfItem:self.quitMenuItem];
+    [self.menuItemMenu insertItem:_loginMenuItem atIndex:quitIndex];
+    [self.menuItemMenu insertItem:[NSMenuItem separatorItem] atIndex:quitIndex + 1];
+
+    if (SMAppService.mainAppService.status == SMAppServiceStatusEnabled) {
+        _loginMenuItem.state = NSControlStateValueOn;
+    }
 }
 
 - (IBAction)menuChanged:(id)sender {
@@ -77,6 +91,21 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     [[NSUserDefaults standardUserDefaults] setBool:_alarmEnabled forKey:CLStateOfAlarm];
+}
+
+- (void)toggleStartOnLogin:(id)sender {
+    NSError *error = nil;
+    if (SMAppService.mainAppService.status == SMAppServiceStatusEnabled) {
+        [SMAppService.mainAppService unregisterAndReturnError:&error];
+        if (!error) {
+            _loginMenuItem.state = NSControlStateValueOff;
+        }
+    } else {
+        [SMAppService.mainAppService registerAndReturnError:&error];
+        if (!error) {
+            _loginMenuItem.state = NSControlStateValueOn;
+        }
+    }
 }
 
 - (IBAction)openWebsite:(id)sender {
