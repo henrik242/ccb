@@ -20,4 +20,6 @@ Install
 
     $ brew install henrik242/brew/ccb
 
+See the [Homebrew tap](https://github.com/henrik242/homebrew-brew) for more info.
+
 Or download the latest release from https://github.com/henrik242/ccb/releases/latest
