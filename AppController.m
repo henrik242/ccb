@@ -1,100 +1,82 @@
 #import "AppController.h"
-#define IS_CAPS_LOCK(x)		(x & alphaLock)
 
-@implementation AppController
+@implementation AppController {
+    NSSound *_sound;
+    NSTimer *_timer;
+    NSStatusItem *_statusItem;
+    BOOL _isAlarming;
+    BOOL _alarmEnabled;
+}
 
 + (void)initialize {
-    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObject:[NSNumber numberWithBool:NO]] forKeys:[NSArray arrayWithObject:CLStateOfAlarm]]];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{CLStateOfAlarm: @YES}];
 }
 
 - (void)awakeFromNib {
-    NSStatusBar *bar = [NSStatusBar systemStatusBar];
-    menuItem = [bar statusItemWithLength:NSVariableStatusItemLength];
-    [menuItem retain]; // keep it!
-    menuItem.button.title = NSLocalizedString(@"📢",@""); // title
-    menuItem.button.cell.highlighted = YES; // behave like main menu
-    [menuItem setMenu:menuItemMenu];
-    
-    isAlarming = NO;
-    alarmIsEnabled = [[[NSUserDefaults standardUserDefaults] objectForKey:CLStateOfAlarm] boolValue];
-    
-    sound = [[NSSound soundNamed:@"Alarm"] retain];
-    
-    // Set menu state
-    if (alarmIsEnabled) {
-        [enabledMenuItem setTitle:NSLocalizedString(@"Deactivate warning",@"")];
-        [enabledMenuItem setTag:1];
+    _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    _statusItem.button.title = NSLocalizedString(@"📢", @"");
+    _statusItem.menu = self.menuItemMenu;
+
+    _sound = [NSSound soundNamed:@"Alarm"];
+
+    _alarmEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:CLStateOfAlarm];
+
+    if (_alarmEnabled) {
+        self.enabledMenuItem.title = NSLocalizedString(@"Deactivate Warning", @"");
+        self.enabledMenuItem.tag = 1;
     } else {
-        [enabledMenuItem setTitle:NSLocalizedString(@"Activate warning",@"")];
-        [enabledMenuItem setTag:0];
+        self.enabledMenuItem.title = NSLocalizedString(@"Activate Warning", @"");
+        self.enabledMenuItem.tag = 0;
     }
-    [quitMenuItem setTitle:[NSLocalizedString(@"Quit",@"") stringByAppendingString:@" Carbon CapsBeeper"]];
+    self.quitMenuItem.title = [NSLocalizedString(@"Quit", @"") stringByAppendingString:@" Carbon CapsBeeper"];
 }
 
 - (IBAction)menuChanged:(id)sender {
-    if ([enabledMenuItem tag] == 0) { // Activate alarm
-        [enabledMenuItem setTitle:NSLocalizedString(@"Deactivate warning",@"")];
-        [self setAlarmIsEnabled:YES];
-        [enabledMenuItem setTag:1];
-    } else { // Deactivate alarm
-        [enabledMenuItem setTitle:NSLocalizedString(@"Activate warning",@"")];
-        [self setAlarmIsEnabled:NO];
-        [enabledMenuItem setTag:0];
+    if (self.enabledMenuItem.tag == 0) {
+        self.enabledMenuItem.title = NSLocalizedString(@"Deactivate Warning", @"");
+        [self setAlarmEnabled:YES];
+        self.enabledMenuItem.tag = 1;
+    } else {
+        self.enabledMenuItem.title = NSLocalizedString(@"Activate Warning", @"");
+        [self setAlarmEnabled:NO];
+        self.enabledMenuItem.tag = 0;
     }
 }
 
-- (void)setAlarmIsEnabled:(BOOL)aBool {
-    if (aBool != alarmIsEnabled) {
-        if (aBool == YES) {
-            timer = [[NSTimer scheduledTimerWithTimeInterval:0.1
-                                                      target:self
-                                                    selector:@selector(checkCapsLock:)
-                                                    userInfo:nil
-                                                     repeats:YES] retain];
-        } else {
-            if ([sound isPlaying])
-                [sound stop];
-            isAlarming = NO;
-            [timer invalidate];
-            [timer release];
-            timer = nil;
-        }
-        alarmIsEnabled = aBool;
-    }
-}
+- (void)setAlarmEnabled:(BOOL)enabled {
+    _alarmEnabled = enabled;
+    [_timer invalidate];
+    _timer = nil;
 
-- (BOOL)alarmIsEnabled {
-    return alarmIsEnabled;
+    if (enabled) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.1
+                                                  target:self
+                                                selector:@selector(checkCapsLock:)
+                                                userInfo:nil
+                                                 repeats:YES];
+    } else {
+        [_sound stop];
+        _isAlarming = NO;
+    }
 }
 
 - (void)checkCapsLock:(NSTimer *)aTimer {
-    int keyModifier = GetCurrentKeyModifiers();  // the only real Carbon function
-    if ( IS_CAPS_LOCK(keyModifier) && !isAlarming) {
-        isAlarming = YES;
-        [sound play];
-    }
-    else if ( !IS_CAPS_LOCK(keyModifier) && isAlarming) {
-        isAlarming = NO;
-        [sound stop];
+    BOOL capsLockOn = ([NSEvent modifierFlags] & NSEventModifierFlagCapsLock) != 0;
+    if (capsLockOn && !_isAlarming) {
+        _isAlarming = YES;
+        [_sound play];
+    } else if (!capsLockOn && _isAlarming) {
+        _isAlarming = NO;
+        [_sound stop];
     }
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    alarmIsEnabled = !alarmIsEnabled;
-    [self setAlarmIsEnabled:!alarmIsEnabled];
+    [self setAlarmEnabled:_alarmEnabled];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-    [[NSStatusBar systemStatusBar] removeStatusItem:menuItem];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:[self alarmIsEnabled]] forKey:CLStateOfAlarm];
-}
-
-- (void)dealloc {
-    [self setAlarmIsEnabled:NO];
-    [menuItem release];
-    [sound release];
-    
-    [super dealloc];
+    [[NSUserDefaults standardUserDefaults] setBool:_alarmEnabled forKey:CLStateOfAlarm];
 }
 
 - (IBAction)openWebsite:(id)sender {
